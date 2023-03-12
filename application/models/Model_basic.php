@@ -304,7 +304,7 @@ class Model_basic extends CI_Model {
                     (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 12) des
                 FROM tbl_riwayat tr
                 JOIN tbl_barang tb on tr.id_barang = tb.id_barang
-                WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status=1
+                WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status='1'
                 GROUP BY id
             ");
 
@@ -340,7 +340,7 @@ class Model_basic extends CI_Model {
                 (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 12) des
             FROM tbl_riwayat tr
             JOIN tbl_barang tb on tr.id_barang = tb.id_barang
-            WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status=1 AND tr.id_peminjam=$id
+            WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status='1' AND tr.id_peminjam=$id
             GROUP BY id
         ");
 
