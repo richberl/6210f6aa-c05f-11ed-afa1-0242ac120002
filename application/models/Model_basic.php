@@ -290,18 +290,18 @@ class Model_basic extends CI_Model {
                 SELECT
                     tr.id_barang id,
                     tb.name nama,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 1) jan,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 2) feb,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 3) mar,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 4) apr,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 5) mei,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 6) jun,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 7) jul,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 8) ags,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 9) sep,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 10) okt,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 11) nov,
-                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 12) des
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 1 AND YEAR(p.tgl_pinjam) = $year) jan,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 2 AND YEAR(p.tgl_pinjam) = $year) feb,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 3 AND YEAR(p.tgl_pinjam) = $year) mar,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 4 AND YEAR(p.tgl_pinjam) = $year) apr,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 5 AND YEAR(p.tgl_pinjam) = $year) mei,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 6 AND YEAR(p.tgl_pinjam) = $year) jun,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 7 AND YEAR(p.tgl_pinjam) = $year) jul,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 8 AND YEAR(p.tgl_pinjam) = $year) ags,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 9 AND YEAR(p.tgl_pinjam) = $year) sep,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 10 AND YEAR(p.tgl_pinjam) = $year) okt,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 11 AND YEAR(p.tgl_pinjam) = $year) nov,
+                    (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_barang = id AND MONTH(p.tgl_pinjam) = 12 AND YEAR(p.tgl_pinjam) = $year) des
                 FROM tbl_riwayat tr
                 JOIN tbl_barang tb on tr.id_barang = tb.id_barang
                 WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status='1'
@@ -326,18 +326,18 @@ class Model_basic extends CI_Model {
             SELECT
                 tr.id_barang id,
                 tb.name nama,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 1) jan,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 2) feb,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 3) mar,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 4) apr,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 5) mei,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 6) jun,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 7) jul,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 8) ags,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 9) sep,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 10) okt,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 11) nov,
-                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 12) des
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 1) AND YEAR(p.tgl_pinjam) = $year jan,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 2) AND YEAR(p.tgl_pinjam) = $year feb,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 3) AND YEAR(p.tgl_pinjam) = $year mar,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 4) AND YEAR(p.tgl_pinjam) = $year apr,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 5) AND YEAR(p.tgl_pinjam) = $year mei,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 6) AND YEAR(p.tgl_pinjam) = $year jun,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 7) AND YEAR(p.tgl_pinjam) = $year jul,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 8) AND YEAR(p.tgl_pinjam) = $year ags,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 9) AND YEAR(p.tgl_pinjam) = $year sep,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 10 AND YEAR(p.tgl_pinjam) = $year) okt,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 11 AND YEAR(p.tgl_pinjam) = $year) nov,
+                (SELECT IFNULL(SUM(p.jml), 0) FROM tbl_riwayat p WHERE p.id_peminjam=tr.id_peminjam AND p.id_barang = id AND MONTH(p.tgl_pinjam) = 12 AND YEAR(p.tgl_pinjam) = $year) des
             FROM tbl_riwayat tr
             JOIN tbl_barang tb on tr.id_barang = tb.id_barang
             WHERE YEAR(tr.tgl_pinjam)=$year AND tr.status='1' AND tr.id_peminjam=$id
