@@ -110,8 +110,7 @@
             <script>
                 let myChart;
                 const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', "Des"];
-                const datasets = JSON.parse('<?= json_encode($dataGrafik) ?>');
-
+                let datasets = JSON.parse('<?= json_encode($dataGrafik) ?>');
                 document.addEventListener('DOMContentLoaded', function() {
                     const config = {
                         type: 'line',
